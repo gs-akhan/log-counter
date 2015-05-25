@@ -11,6 +11,7 @@ var express = require('express');
      client = redis.createClient()
     
 var app = express();
+app.listen(process.env.PORT || '3000');
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +25,11 @@ var app = express();
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', function(req, res) {
+  res.json({
+    status : "OK - OK"
+  })
+});
 app.get('/incr', function(req, res) {
   client.incr('log-counter');
   res.json({
