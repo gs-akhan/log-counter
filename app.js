@@ -8,7 +8,12 @@ var express = require('express');
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
  var redis = require("redis"),
-     client = redis.createClient()
+     client = redis.createClient();
+     
+     client.on("error", function (err) {
+        console.log("Error " + err);
+    });
+
     
 var app = express();
 app.listen(process.env.PORT || '3000');
